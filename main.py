@@ -30,6 +30,28 @@ def button_dime_click_handler():
     string_amount.set(f'Amount Entered: ${float(string_amount.get().split("$")[-1]) + 0.1:.2f}')
 
 
+def button_drink_click_handler():
+    cost = {'Latte': 2.5, 'Espresso': 1.5, 'Cappuccino': 3.0}
+    try:
+        drink_name = string_selected_drink.get().split()[0]
+        drink_cost = float(cost[drink_name])
+        amount_entered = float(string_amount.get().split("$")[-1])
+        if amount_entered >= drink_cost:
+            feedback = f'Enjoy your {drink_name}'
+            if amount_entered > drink_cost:
+                feedback += f'. Here is your ${amount_entered - drink_cost:.2f} back.'
+            string_feedback.set(feedback)
+            string_amount.set(f'Amount Entered: $0.00')
+            string_selected_drink.set('')
+        else:
+            string_feedback.set(f'Insufficient Money Entered. Please enter ${drink_cost-amount_entered:.2f} more.')
+    except IndexError as ie:
+        string_feedback.set('SELECT A DRINK FIRST')
+    except Exception as e:
+        print(e)
+
+
+
 # Step 1: Create Root Window
 root = tk.Tk()
 root.title('Coffee Machine')
@@ -65,5 +87,11 @@ string_amount = tk.StringVar()
 entry_amount = ttk.Entry(frame_coffee, width=40, textvariable=string_amount, state='readonly')
 entry_amount.grid(columnspan=3, row=4)
 string_amount.set("Amount Entered: $0.00")
+
+button_drink = ttk.Button(frame_coffee, text='Make My DRINK!!!', command=button_drink_click_handler).grid(columnspan=3,
+                                                                                                          row=5)
+string_feedback = tk.StringVar()
+entry_feedback = ttk.Entry(frame_coffee, width=40, textvariable=string_feedback, state='readonly').grid(columnspan=3,
+                                                                                                        row=6)
 
 root.mainloop()
