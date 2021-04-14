@@ -95,3 +95,13 @@ entry_feedback = ttk.Entry(frame_coffee, width=40, textvariable=string_feedback,
                                                                                                         row=6)
 
 root.mainloop()
+
+
+"""
+To create an executable:
+
+pip install pyinstaller
+pyinstaller --onefile main.py
+
+https://datatofish.com/executable-pyinstaller/
+"""
