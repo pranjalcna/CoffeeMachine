@@ -13,6 +13,18 @@ def button_espresso_click_handler():
 def button_cappuccino_click_handler():
     string_selected_drink.set('Cappuccino Selected. Please enter $3.00')
 
+def button_toonie_click_handler():
+    pass
+
+def button_loonie_click_handler():
+    pass
+
+def button_quarter_click_handler():
+    pass
+
+def button_dime_click_handler():
+    pass
+
 
 # Step 1: Create Root Window
 root = tk.Tk()
@@ -38,6 +50,9 @@ button_cappuccino.grid(column=2, row=1)
 
 string_selected_drink = tk.StringVar()
 entry_selected_drink = ttk.Entry(frame_coffee, width=40, textvariable=string_selected_drink, state='readonly')
-entry_selected_drink.grid(columnspan = 3, row = 2)
+entry_selected_drink.grid(columnspan=3, row=2)
+
+button_toonie = ttk.Button(frame_coffee, text = '$2.00', command = button_toonie_click_handler).grid(column=0, row=3)
+
 
 root.mainloop()
