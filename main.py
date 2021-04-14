@@ -13,17 +13,21 @@ def button_espresso_click_handler():
 def button_cappuccino_click_handler():
     string_selected_drink.set('Cappuccino Selected. Please enter $3.00')
 
+
 def button_toonie_click_handler():
-    pass
+    string_amount.set(f'Amount Entered: ${float(string_amount.get().split("$")[-1]) + 2:.2f}')
+
 
 def button_loonie_click_handler():
-    pass
+    string_amount.set(f'Amount Entered: ${float(string_amount.get().split("$")[-1]) + 1:.2f}')
+
 
 def button_quarter_click_handler():
-    pass
+    string_amount.set(f'Amount Entered: ${float(string_amount.get().split("$")[-1]) + 0.25:.2f}')
+
 
 def button_dime_click_handler():
-    pass
+    string_amount.set(f'Amount Entered: ${float(string_amount.get().split("$")[-1]) + 0.1:.2f}')
 
 
 # Step 1: Create Root Window
@@ -52,7 +56,14 @@ string_selected_drink = tk.StringVar()
 entry_selected_drink = ttk.Entry(frame_coffee, width=40, textvariable=string_selected_drink, state='readonly')
 entry_selected_drink.grid(columnspan=3, row=2)
 
-button_toonie = ttk.Button(frame_coffee, text = '$2.00', command = button_toonie_click_handler).grid(column=0, row=3)
+button_toonie = ttk.Button(frame_coffee, text='$2.00', command=button_toonie_click_handler).grid(column=0, row=3)
+button_loonie = ttk.Button(frame_coffee, text='$1.00', command=button_loonie_click_handler).grid(column=1, row=3)
+button_quarter = ttk.Button(frame_coffee, text='$0.25', command=button_quarter_click_handler).grid(column=2, row=3)
+button_dime = ttk.Button(frame_coffee, text='$0.10', command=button_dime_click_handler).grid(column=3, row=3)
 
+string_amount = tk.StringVar()
+entry_amount = ttk.Entry(frame_coffee, width=40, textvariable=string_amount, state='readonly')
+entry_amount.grid(columnspan=3, row=4)
+string_amount.set("Amount Entered: $0.00")
 
 root.mainloop()
